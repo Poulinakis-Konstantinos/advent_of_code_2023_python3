@@ -17,27 +17,21 @@ def readTxt(path='day1/input.txt') -> Iterable:
         for line in f:
             yield line.rstrip("\n")
 
-def formCalibrationValue(line) -> int:
-    for char in filter(str.isdigit, line):
-        digit1 = int(char)
-        break
-    for char in filter(str.isdigit, line[::-1]):
-        digit2 = int(char)
-        break
+def findFirstDigit(s:str) -> str:
+    return next(filter(str.isdigit, s))
 
-    return digit1*10 + digit2
+def formCalibrationValue(line) -> int:
+    digit1 = int(findFirstDigit(line))
+    digit2 = int(findFirstDigit(reversed(line)))
+
+    return 10*digit1 + digit2
 
 def computeSum(reader: Iterable) -> int:
-    calibrationSum = 0 
-    for line in reader:
-        calVal = formCalibrationValue(line)
-        calibrationSum += calVal
-    return calibrationSum
+    return sum(map(formCalibrationValue, reader))
 
 def main():
     calibrationSum = computeSum(readTxt())
     print(calibrationSum)
-
 
 if __name__ == "__main__": 
     main()
