@@ -1,20 +1,3 @@
-'''
-Given a document with multiple lines, each containing at least 1 digit, find the first and last digits of each line.
-Given these two digits form a number. Finally sum up all the numbers formulated from each line.
-
-Attention: The digits might come in holographic form i.e. 1='one', 2='two'
-
-eg. 
-two1nine
-eightwothree
-abcone2threexyz
-
-answer = 29, 83, 13, and sum=77.
-
-Approach (the straightforward one): Parse the string in substrings of five chars (max number of chars present in mapper.)
-Scan the substrings for digit_words or digits. Once you find one stop. Do the same for the reversed string with
-reversed values in the mapper.
-'''
 import re
 
 WORDS = ("zero", "one", "two", "three", "four",

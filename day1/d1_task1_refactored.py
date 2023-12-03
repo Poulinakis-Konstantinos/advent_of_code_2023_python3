@@ -10,15 +10,19 @@ treb7uchet
 
 answer = 12, 38, 15, and sum=77.
 '''
-from typing import Iterable 
+from typing import Iterable
+from collections.abc import Generator
 
-def readTxt(path='day1/input.txt') -> Iterable:
+
+def readTxt(path='day1/input.txt') -> Generator[str, None, None]:
     with open(path, 'r') as f:
         for line in f:
             yield line.rstrip("\n")
 
-def findFirstDigit(s:str) -> str:
+
+def findFirstDigit(s: str) -> str:
     return next(filter(str.isdigit, s))
+
 
 def formCalibrationValue(line) -> int:
     digit1 = int(findFirstDigit(line))
@@ -26,12 +30,15 @@ def formCalibrationValue(line) -> int:
 
     return 10*digit1 + digit2
 
+
 def computeSum(reader: Iterable) -> int:
     return sum(map(formCalibrationValue, reader))
+
 
 def main():
     calibrationSum = computeSum(readTxt())
     print(calibrationSum)
 
-if __name__ == "__main__": 
+
+if __name__ == "__main__":
     main()
